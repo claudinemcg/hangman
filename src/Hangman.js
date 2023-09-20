@@ -49,7 +49,7 @@ class Hangman extends Component {
         key={ltr}
         value={ltr}
         onClick={this.handleGuess}
-        disabled={this.state.guessed.has(ltr)}
+        disabled={this.state.guessed.has(ltr) || this.state.nWrong === this.props.maxWrong}
       >
         {ltr}
       </button>
@@ -62,8 +62,12 @@ class Hangman extends Component {
       <div className='Hangman'>
         <h1>Hangman</h1>
         <img src={this.props.images[this.state.nWrong]} />
+        <p className='Hangman-score'>
+       {this.state.nWrong === this.props.maxWrong ? 'You Lose!' :
+          `Guessed wrong: ${this.state.nWrong}`}</p>
         <p className='Hangman-word'>{this.guessedWord()}</p>
         <p className='Hangman-btns'>{this.generateButtons()}</p>
+        
       </div>
     );
   }
