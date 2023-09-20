@@ -57,6 +57,12 @@ class Hangman extends Component {
     ));
   }
 
+  resetGame = () => {
+    this.setState(st => ({
+      nWrong: 0, guessed: new Set(), answer: randomWord()
+    }))
+  }
+
   /** render: render game */
   render() {
 
@@ -77,6 +83,9 @@ class Hangman extends Component {
             ? this.generateButtons()  
             : 'You Lose!'} 
         </p>
+        <div className='Hangman-reset'>
+          <button onClick={this.resetGame}>Reset Game</button>
+        </div>
       </div>
     );
   }
